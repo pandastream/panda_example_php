@@ -1,0 +1,29 @@
+[Fri Jan 15 14:49:50 2010] [error] [client ::1] client denied by server configuration: /Users/pablo/src/panda_clients/php/public/
+[Fri Jan 15 14:49:51 2010] [error] [client ::1] client denied by server configuration: /Users/pablo/src/panda_clients/php/public/
+[Fri Jan 15 14:49:53 2010] [error] [client ::1] client denied by server configuration: /Users/pablo/src/panda_clients/php/public/
+[Fri Jan 15 14:50:11 2010] [error] [client ::1] client denied by server configuration: /Users/pablo/src/panda_clients/php/public/
+[Fri Jan 15 14:50:11 2010] [error] [client ::1] client denied by server configuration: /Users/pablo/src/panda_clients/php/public/
+[Fri Jan 15 14:50:13 2010] [error] [client ::1] client denied by server configuration: /Users/pablo/src/panda_clients/php/public/
+[Fri Jan 15 14:50:14 2010] [error] [client ::1] client denied by server configuration: /Users/pablo/src/panda_clients/php/public/
+[Fri Jan 15 14:50:17 2010] [error] [client ::1] client denied by server configuration: /Users/pablo/src/panda_clients/php/public/
+[Fri Jan 15 14:50:19 2010] [error] [client ::1] client denied by server configuration: /Users/pablo/src/panda_clients/php/public/
+[Fri Jan 15 14:51:03 2010] [error] [client ::1] PHP Warning:  require_once(/Users/pablo/src/panda/panda_example_php/example/app.php) [<a href='function.require-once'>function.require-once</a>]: failed to open stream: No such file or directory in /Users/pablo/src/panda/panda_example_php/public/index.php on line 5
+[Fri Jan 15 14:51:03 2010] [error] [client ::1] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/Users/pablo/src/panda/panda_example_php/example/app.php' (include_path='.:/opt/local/lib/php') in /Users/pablo/src/panda/panda_example_php/public/index.php on line 5
+[Fri Jan 15 14:53:22 2010] [error] [client ::1] PHP Notice:  Undefined property: stdClass::$panda_id in /Users/pablo/src/panda/panda_example_php/app.php on line 38
+[Fri Jan 15 14:55:38 2010] [error] [client ::1] PHP Fatal error:  Call to undefined method Panda::authentication_params() in /Users/pablo/src/panda/panda_example_php/app.php on line 67, referer: http://localhost/
+[Fri Jan 15 14:56:11 2010] [error] [client ::1] PHP Fatal error:  Call to undefined method Panda::authentication_params() in /Users/pablo/src/panda/panda_example_php/app.php on line 67
+[Fri Jan 15 15:14:32 2010] [error] [client ::1] PHP Notice:  Undefined variable: p in /Users/pablo/src/panda/panda_example_php/app.php on line 73, referer: http://localhost/
+[Fri Jan 15 15:14:32 2010] [error] [client ::1] PHP Fatal error:  Call to a member function delete() on a non-object in /Users/pablo/src/panda/panda_example_php/app.php on line 73, referer: http://localhost/
+[Fri Jan 15 15:14:42 2010] [error] [client ::1] PHP Notice:  Undefined variable: panda in /Users/pablo/src/panda/panda_example_php/app.php on line 73, referer: http://localhost/
+[Fri Jan 15 15:14:42 2010] [error] [client ::1] PHP Fatal error:  Call to a member function delete() on a non-object in /Users/pablo/src/panda/panda_example_php/app.php on line 73, referer: http://localhost/
+[Fri Jan 15 15:14:51 2010] [error] [client ::1] PHP Fatal error:  Call to undefined method stdClass::delete() in /Users/pablo/src/panda/panda_example_php/app.php on line 74, referer: http://localhost/
+[Fri Jan 15 15:15:02 2010] [error] [client ::1] PHP Notice:  Undefined variable: video in /Users/pablo/src/panda/panda_example_php/app.php on line 74, referer: http://localhost/
+[Fri Jan 15 15:15:02 2010] [error] [client ::1] PHP Notice:  Trying to get property of non-object in /Users/pablo/src/panda/panda_example_php/app.php on line 74, referer: http://localhost/
+[Fri Jan 15 15:17:37 2010] [error] [client ::1] PHP Notice:  Undefined variable: video in /Users/pablo/src/panda/panda_example_php/app.php on line 78, referer: http://localhost/
+[Fri Jan 15 15:17:37 2010] [error] [client ::1] PHP Notice:  Trying to get property of non-object in /Users/pablo/src/panda/panda_example_php/app.php on line 78, referer: http://localhost/
+[Fri Jan 15 15:20:41 2010] [error] [client ::1] PHP Notice:  Undefined variable: video in /Users/pablo/src/panda/panda_example_php/app.php on line 78, referer: http://localhost/
+[Fri Jan 15 15:20:41 2010] [error] [client ::1] PHP Notice:  Trying to get property of non-object in /Users/pablo/src/panda/panda_example_php/app.php on line 78, referer: http://localhost/
+[Fri Jan 15 15:29:38 2010] [error] [client ::1] PHP Notice:  Undefined variable: video in /Users/pablo/src/panda/panda_example_php/app.php on line 73, referer: http://localhost/
+[Fri Jan 15 15:29:38 2010] [error] [client ::1] PHP Notice:  Trying to get property of non-object in /Users/pablo/src/panda/panda_example_php/app.php on line 73, referer: http://localhost/
+[Fri Jan 15 15:30:17 2010] [error] [client ::1] PHP Notice:  Undefined variable: video in /Users/pablo/src/panda/panda_example_php/app.php on line 73, referer: http://localhost/
+[Fri Jan 15 15:30:17 2010] [error] [client ::1] PHP Notice:  Trying to get property of non-object in /Users/pablo/src/panda/panda_example_php/app.php on line 73, referer: http://localhost/
