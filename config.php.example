@@ -1,5 +1,14 @@
 <?php
 
+//
+// The root URL of the application. Change it if different on your setup
+//
+$GLOBALS['base_uri'] = '/';
+
+
+//
+// The details of your Panda account
+//
 $GLOBALS['panda'] = new Panda(array(
     'api_host' => 'your-panda-domain.com',
     'cloud_id' => 'your-panda-cloud-id',

@@ -7,7 +7,8 @@ require_once 'lib/limonade/lib/limonade.php';
 require_once 'lib/panda.php';
 
 function configure() {
-		option('base_uri', '/');
+    global $base_uri;
+    option('base_uri', isset($base_uri) ? $base_uri : '/');
     option('views_dir', APP_BASE . '/views');
     require('config.php');
 }
