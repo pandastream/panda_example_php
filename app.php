@@ -14,23 +14,23 @@ function configure() {
 }
 
 function before() {
-		global $video;
-		
-		$video = _read($_SESSION, 'video', new StdClass());
-		if ( ! isset($video->panda_id)) {
-				reset_video();
-		}
+    global $video;
+
+    $video = _read($_SESSION, 'video', new StdClass());
+    if ( ! isset($video->panda_id)) {
+        reset_video();
+    }
     layout('layout.html.php');
 }
 
 function after($output) {
-		$_SESSION['video'] = $GLOBALS['video'];
-		return $output;
+    $_SESSION['video'] = $GLOBALS['video'];
+    return $output;
 }
 
 dispatch_get('/', 'index');
 function index() {
-		global $video;
+    global $video;
     if ($video->panda_id) {
         return $video->url ? show() : processing();
     }
@@ -40,14 +40,14 @@ function index() {
 }
 
 function processing() {
-		update_video_status();
+    update_video_status();
     return html('processing.html.php');
 }
 
 function show() {
-		global $video;
-		set('video', $video);
-		return html('show.html.php');
+    global $video;
+    set('video', $video);
+    return html('show.html.php');
 }
 
 function form() {
@@ -58,24 +58,24 @@ function form() {
 
 dispatch_post('/', 'create');
 function create() {
-		global $video;
-		$video->panda_id = $_POST['video']['panda_id'];
-		redirect_to('/');
+    global $video;
+    $video->panda_id = $_POST['video']['panda_id'];
+    redirect_to('/');
 }
 
 dispatch('/authparams.json/:method/:request_uri/:extra_params', 'authparams');
 function authparams() {
-		global $panda;
-		$response = $panda->signed_params(_read($_GET, 'method'), _read($_GET, 'request_uri'), _read($_GET, 'request_params', array()));
-		return json($response);
+    global $panda;
+    $response = $panda->signed_params(_read($_GET, 'method'), _read($_GET, 'request_uri'), _read($_GET, 'request_params', array()));
+    return json($response);
 }
 
 dispatch('/reset', '_reset');
 function _reset() {
     global $panda ;
     $panda->delete("videos/{$video->panda_id}.json");
-		reset_video();
-		redirect_to('/');
+    reset_video();
+    redirect_to('/');
 }
 
 
@@ -87,26 +87,26 @@ function _read($array, $key, $default = null) {
 }
 
 function update_video_status() {
-		global $video, $panda, $s3_bucket_name;
-		
-		if ($video->url) {
-				return;
-		}
-  	$panda_encodings = json_decode($panda->get("/videos/{$video->panda_id}/encodings.json"));
-  	$panda_encoding = $panda_encodings[0];
-		if ($panda_encoding->status != 'success') {
-				return;
-		}
+    global $video, $panda, $s3_bucket_name;
 
-		$video->url    = "http://$s3_bucket_name.s3.amazonaws.com/{$video->panda_id}{$panda_encoding->extname}";
-		$video->width  = $panda_encoding->width;
-		$video->height = $panda_encoding->height;
+    if ($video->url) {
+        return;
+    }
+    $panda_encodings = json_decode($panda->get("/videos/{$video->panda_id}/encodings.json"));
+    $panda_encoding = $panda_encodings[0];
+    if ($panda_encoding->status != 'success') {
+        return;
+    }
+
+    $video->url    = "http://$s3_bucket_name.s3.amazonaws.com/{$video->panda_id}{$panda_encoding->extname}";
+    $video->width  = $panda_encoding->width;
+    $video->height = $panda_encoding->height;
 }
 
 function reset_video() {
-		global $video;
-		$video->panda_id = null;
-		$video->url = null;
+    global $video;
+    $video->panda_id = null;
+    $video->url = null;
 }
 
 ?>
