@@ -32,7 +32,7 @@ dispatch_get('/', 'index');
 function index() {
     global $video;
     if ($video->panda_id) {
-        return $video->url ? show() : processing();
+        return video_ready() ? show() : processing();
     }
     else {
         return form();
@@ -40,7 +40,6 @@ function index() {
 }
 
 function processing() {
-    update_video_status();
     return html('processing.html.php');
 }
 
@@ -103,23 +102,36 @@ function update_video_status() {
     global $video, $panda, $s3_bucket_name;
 
     if ($video->url) {
-        return;
+        return true;
     }
     $panda_encodings = json_decode($panda->get("/videos/{$video->panda_id}/encodings.json"));
+
     $panda_encoding = $panda_encodings[0];
     if ($panda_encoding->status != 'success') {
-        return;
+        return false;
     }
 
     $video->url    = "http://$s3_bucket_name.s3.amazonaws.com/{$panda_encoding->id}{$panda_encoding->extname}";
     $video->width  = $panda_encoding->width;
     $video->height = $panda_encoding->height;
+    
+    return true;
 }
 
 function reset_video() {
     global $video;
     $video->panda_id = null;
     $video->url = null;
+}
+
+function video_ready() {
+    global $video;
+
+    if ( ! $video->panda_id) {
+        return false;
+    }
+
+    return update_video_status();
 }
 
 function player_present() {
