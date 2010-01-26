@@ -45,9 +45,22 @@ function processing() {
 }
 
 function show() {
+    if (player_present()) {
+        return _show();
+    }
+    else {
+        return _player_missing();
+    }
+}
+
+function _show() {
     global $video;
     set('video', $video);
     return html('show.html.php');
+}
+
+function _player_missing() {
+    return html('player_missing.html.php');
 }
 
 function form() {
@@ -107,6 +120,10 @@ function reset_video() {
     global $video;
     $video->panda_id = null;
     $video->url = null;
+}
+
+function player_present() {
+    return is_file(APP_BASE . '/public/flash/player.swf');
 }
 
 ?>
