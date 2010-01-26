@@ -35,22 +35,30 @@ class Panda {
     public function delete($request_path, $params = array()) {
         return $this->http_request('DELETE', $request_path, $params);
     }
+
+    public function api_url() {
+        return 'http://' . $this->api_host_and_port();
+    }
     
+    public function api_host_and_port() {
+        return $this->api_host . "/v{$this->api_version}";
+    }
+
     private function http_request($verb, $path, $query = null, $data = null) {
         $verb = strtoupper($verb);
-				$path = self::canonical_path($path);
-				$suffix = '';
-				$signed_data = null;
+		$path = self::canonical_path($path);
+		$suffix = '';
+		$signed_data = null;
 				
-				if ($verb == 'POST' || $verb == 'PUT') {
+		if ($verb == 'POST' || $verb == 'PUT') {
             $signed_data = self::array2query($this->signed_params($verb, $path, $data));
-			  }
-			  else {
+        }
+		else {
             $signed_query_string = self::array2query($this->signed_params($verb, $path, $query));
-				    $suffix = '?' . $signed_query_string;
-				}
+			$suffix = '?' . $signed_query_string;
+		}
 
-        $url = $this->api_host . "/v{$this->api_version}" . $path . $suffix;
+        $url = $this->api_host_and_port() . $path . $suffix;
         
         $curl = curl_init($url);
         if ($signed_data) {
@@ -102,11 +110,11 @@ END;
     // Misc
     //
 
-		private static function canonical_path($path) {
- 				return '/' . trim($path, " \t\n\r\0\x0B/");
+	private static function canonical_path($path) {
+        return '/' . trim($path, " \t\n\r\0\x0B/");
     }
     
-		private static function canonical_querystring($params = array()) {
+	private static function canonical_querystring($params = array()) {
         ksort($params, SORT_STRING);
         return self::array2query($params);
     }
