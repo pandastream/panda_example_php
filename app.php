@@ -84,7 +84,7 @@ function authparams() {
 
 dispatch('/reset', '_reset');
 function _reset() {
-    global $panda ;
+    global $panda, $video;
     $panda->delete("videos/{$video->panda_id}.json");
     reset_video();
     redirect_to('/');
