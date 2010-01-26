@@ -7,7 +7,7 @@
     <div class="flash" id="progress_bar_container"></div>
     <input name="video[panda_id]" type="hidden" id="video_panda_id" />
     <script type="text/javascript"><!--//
-PandaUploader.init('http://ec2-174-129-52-14.compute-1.amazonaws.com:80/v2', {"final_file_field_id":"video_panda_id","form_id":"upload-form","state_update_url":"http://localhost.com:4000/videos/$id/status_update"}, {"debug":true,"flash_url":"/flash/swfupload.swf"});
+PandaUploader.init('<?php echo $panda->api_url(); ?>', {"final_file_field_id":"video_panda_id","form_id":"upload-form","state_update_url":"http://localhost.com:4000/videos/$id/status_update"}, {"debug":true,"flash_url":"/flash/swfupload.swf"});
     //--></script>
 		<p><input type="submit" value="Save" id="btnSubmit" /></p>
 </form>

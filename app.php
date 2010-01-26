@@ -51,6 +51,8 @@ function show() {
 }
 
 function form() {
+    global $panda;
+    set('panda', $panda);
     return html('form.html.php');
 }
 
@@ -85,7 +87,7 @@ function _read($array, $key, $default = null) {
 }
 
 function update_video_status() {
-		global $video, $panda;
+		global $video, $panda, $s3_bucket_name;
 		
 		if ($video->url) {
 				return;
@@ -96,7 +98,7 @@ function update_video_status() {
 				return;
 		}
 
-		$video->url    = $panda_encoding->video_url;
+		$video->url    = "http://$s3_bucket_name.s3.amazonaws.com/{$video->panda_id}{$panda_encoding->extname}";
 		$video->width  = $panda_encoding->width;
 		$video->height = $panda_encoding->height;
 }

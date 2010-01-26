@@ -16,4 +16,9 @@ $GLOBALS['panda'] = new Panda(array(
     'secret_key' => 'your-panda-secret-key',
 ));
 
+//
+// The S3 bucket where your Panda cloud has been told to store encoded videos
+//
+$GLOBALS['s3_bucket_name'] = 'your-s3-bucket';
+
 ?>
