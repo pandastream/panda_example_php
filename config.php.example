@@ -10,7 +10,7 @@ $GLOBALS['base_uri'] = '/';
 // The details of your Panda account
 //
 $GLOBALS['panda'] = new Panda(array(
-    'api_host' => 'pandastream.com', // This default will normally be fine
+    'api_host' => 'api.pandastream.com', // This default will normally be fine
     'cloud_id' => 'your-panda-cloud-id',
     'access_key' => 'your-panda-access-key',
     'secret_key' => 'your-panda-secret-key',
