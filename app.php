@@ -97,8 +97,8 @@ function update_video_status() {
     if ($panda_encoding->status != 'success') {
         return;
     }
-
-    $video->url    = "http://$s3_bucket_name.s3.amazonaws.com/{$video->panda_id}{$panda_encoding->extname}";
+print_r($panda_encodings);
+    $video->url    = "http://$s3_bucket_name.s3.amazonaws.com/{$panda_encoding->id}{$panda_encoding->extname}";
     $video->width  = $panda_encoding->width;
     $video->height = $panda_encoding->height;
 }
