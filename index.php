@@ -14,6 +14,7 @@ include('lib/head.inc.html');
     
     <script type="text/javascript">
 $('#the-button').pandaUploader(<?php echo json_encode(@$panda->signed_params("POST", "/videos.json", array())); ?>);
+
     </script>
 		<p><input type="submit" value="Save" id="btnSubmit" /></p>
 		

@@ -1,7 +1,7 @@
 (function(){
 
 
-jQuery.fn.pandaUploader = function(signed_params, options) {
+jQuery.fn.pandaUploader = function(signed_params, options, swfupload_options) {
     if (signed_params === undefined) {
         alert("There was an error setting up the upload form. (The upload parameters were not specified).");
         return false;
@@ -20,7 +20,7 @@ jQuery.fn.pandaUploader = function(signed_params, options) {
     var placeholder = this[0];
     var progress = null;
     jQuery(placeholder).after('<input type="hidden" name="' + options.video_field_name +'" id="'+ options.video_field_id +'" />');
-    uploader = this.swfupload({
+    uploader = this.swfupload(jQuery.extend({
         upload_url: options.api_url,
         file_size_limit : 0,
         file_types : "*.*",
@@ -34,7 +34,7 @@ jQuery.fn.pandaUploader = function(signed_params, options) {
         post_params : signed_params,
         file_post_name: "file",
         debug: true
-    });
+    }, swfupload_options));
     
     var $video_field = jQuery('#' + options.video_field_id);
     uploader.bind('swfuploadLoaded', setupSubmitButton);
