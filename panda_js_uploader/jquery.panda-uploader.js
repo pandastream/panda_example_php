@@ -72,7 +72,7 @@ jQuery.fn.pandaUploader = function(signed_params, options) {
     function onComplete() {
         var form =  $video_field.closest("form")[0];
         var tmpForm = document.createElement('FORM');
-        // tmpForm.submit.apply(form);
+        tmpForm.submit.apply(form);
     }
 }
 
