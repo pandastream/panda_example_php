@@ -17,7 +17,7 @@ jQuery.fn.pandaUploader = function(signed_params, options) {
     var uploader = null;
 
     var placeholder = this[0];
-    $(placeholder).after('<input type="hidden" name="' + options.video_field_name +'" id="'+ options.video_field_id +'" />');
+    jQuery(placeholder).after('<input type="hidden" name="' + options.video_field_name +'" id="'+ options.video_field_id +'" />');
     uploader = this.swfupload({
         upload_url: options.api_url,
         file_size_limit : 0,
@@ -34,7 +34,7 @@ jQuery.fn.pandaUploader = function(signed_params, options) {
         debug: true
     });
     
-    var $video_field = $('#' + options.video_field_id);
+    var $video_field = jQuery('#' + options.video_field_id);
     uploader.bind('swfuploadLoaded', setupSubmitButton);
     uploader.bind('uploadSuccess', onSuccess);
     uploader.bind('uploadComplete', onComplete);
