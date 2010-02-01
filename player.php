@@ -3,7 +3,7 @@ include('lib/panda.php');
 include('lib/config.inc.php');
 include('lib/head.inc.html');
 
-$video_id = $_GET['video_id'];
+$video_id = $_GET['panda_video_id'];
 $panda_encodings = json_decode(@$panda->get("/videos/{$video_id}/encodings.json"));
 $panda_encoding = $panda_encodings[0];
 $encoding = false;
