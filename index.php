@@ -10,7 +10,6 @@ include('lib/head.inc.html');
     <span id="the-button"></span>
     <input type="text" id="txtFileName" disabled="true" style="border: solid 1px; background-color: #FFFFFF;" />
     <div class="flash" id="progress_bar_container"></div>
-    <input name="video_id" type="hidden" id="video_panda_id" />
     <script type="text/javascript">
 $('#the-button').pandaUploader(<?php echo json_encode(@$panda->signed_params("POST", "/videos.json", array())); ?>);
     </script>

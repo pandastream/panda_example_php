@@ -6,7 +6,7 @@ PandaUploader.uploader = null;
 
 jQuery.fn.pandaUploader = function(signed_params) {
     var placeholder = this[0];
-    $(placeholder).after('<span id="hidden-reference"></span>');
+    $(placeholder).after('<input type="hidden" name="video_id" id="hidden-reference" />');
     PandaUploader.uploader = this.swfupload({
         upload_url: "http://staging.pandastream.com/v2/videos.json",
         file_size_limit : 0,
@@ -22,8 +22,9 @@ jQuery.fn.pandaUploader = function(signed_params) {
         file_post_name: "file",
         debug: true
     });
-
     PandaUploader.uploader.bind('swfuploadLoaded', setupSubmitButton);
+    PandaUploader.uploader.bind('uploadSuccess', onSuccess);
+    PandaUploader.uploader.bind('uploadComplete', onComplete);
 }
 
 function setupSubmitButton() {
@@ -34,6 +35,16 @@ function setupSubmitButton() {
 function onSubmit(event) {
     PandaUploader.uploader.swfupload('startUpload');
     return false;
+}
+
+function onSuccess(event, file, response) {
+    $('#hidden-reference').val(eval('(' + response + ')').id);
+}
+
+function onComplete() {
+    var form = $('#hidden-reference').closest("form")[0];
+    var tmpForm = document.createElement('FORM');
+    tmpForm.submit.apply(form);
 }
 
 })();
