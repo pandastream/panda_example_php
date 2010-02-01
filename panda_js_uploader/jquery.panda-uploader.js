@@ -18,9 +18,11 @@ jQuery.fn.pandaUploader = function(signed_params) {
         button_width : 61,
         button_height : 22,
         button_placeholder : placeholder,
+        post_params : signed_params,
+        file_post_name: "file",
         debug: true
     });
-    
+
     PandaUploader.uploader.bind('swfuploadLoaded', setupSubmitButton);
 }
 
