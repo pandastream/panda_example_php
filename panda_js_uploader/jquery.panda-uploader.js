@@ -11,9 +11,12 @@ jQuery.fn.pandaUploader = function(signed_params, options, swfupload_options) {
         video_field_id: "panda-video-id",
         video_field_name: "panda_video_id",
         api_url: "http://staging.pandastream.com/v2/videos.json",
-        progress_id: 'progress_bar_container'
+        progress_id: 'progress_bar_container',
+        progress_handler: null
     }, options);
-    
+    if ( ! options.progress_handler) {
+        options.progress_handler = new ProgressUpload(options);
+    }
     
     var uploader = null;
 
@@ -44,8 +47,8 @@ jQuery.fn.pandaUploader = function(signed_params, options, swfupload_options) {
     uploader.bind('uploadComplete', onComplete);
 
     function setupSubmitButton() {
-        var form = $video_field.closest("form")
-        form.submit(onSubmit);    
+        var form = $video_field.closest("form");
+        form.submit(onSubmit);
     }
 
     function onSubmit(event) {
@@ -54,13 +57,17 @@ jQuery.fn.pandaUploader = function(signed_params, options, swfupload_options) {
     }
 
     function onStart(event, file) {
-        progress = new ProgressUpload(options.progress_id);
+        if (options.progress_handler) {
+            options.progress_handler.start(file);
+        }
     }
 
     function onProgress(event, file, bytesLoaded, bytesTotal) {
         try {
-            var percent = Math.ceil((bytesLoaded / bytesTotal) * 100);
-            progress.setProgress(percent);
+            if (options.progress_handler) {
+                options.progress_handler.setProgress(file, bytesLoaded, bytesTotal);
+            }
+            
         } catch (ex) {
         }
     }
@@ -76,21 +83,26 @@ jQuery.fn.pandaUploader = function(signed_params, options, swfupload_options) {
     }
 }
 
-function ProgressUpload(progress_id) {
-    var $p = jQuery('#' + progress_id);
-    if ($p.size() == 0) {
-        return;
-    }
-    $p.append('<div class="progress-inside"></div>');
-    this.progress = $p.find('.progress-inside');
-    this.setProgress(0);
+function ProgressUpload(options) {
+    this.options = options;
 }
 
 ProgressUpload.prototype = {
-    setProgress: function(percent) {
-        if ( ! self.progress) {
+    start: function(file) {
+        var $p = jQuery('#' + this.options.progress_id);
+        if ($p.size() == 0) {
             return;
         }
+        $p.append('<div class="progress-inside"></div>');
+        this.progress = $p.find('.progress-inside');
+        this.setProgress(file, 0, file.size);
+    },
+    
+    setProgress: function(file, bytesLoaded, bytesTotal) {
+        if ( ! this.progress) {
+            return;
+        }
+        var percent = Math.ceil((bytesLoaded / bytesTotal) * 100);
         $(this.progress).css('width', percent + '%');
     }
 }
