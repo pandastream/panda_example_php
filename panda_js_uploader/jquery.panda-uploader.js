@@ -77,13 +77,20 @@ jQuery.fn.pandaUploader = function(signed_params, options) {
 }
 
 function ProgressUpload(progress_id) {
-    jQuery('#' + progress_id).append('<div class="progress-inside"></div>');
-    this.progress = jQuery('#' + progress_id).find('.progress-inside');
+    var $p = jQuery('#' + progress_id);
+    if ($p.size() == 0) {
+        return;
+    }
+    $p.append('<div class="progress-inside"></div>');
+    this.progress = $p.find('.progress-inside');
     this.setProgress(0);
 }
 
 ProgressUpload.prototype = {
     setProgress: function(percent) {
+        if ( ! self.progress) {
+            return;
+        }
         $(this.progress).css('width', percent + '%');
     }
 }
