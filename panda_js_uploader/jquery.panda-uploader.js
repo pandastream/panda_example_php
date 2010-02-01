@@ -83,7 +83,6 @@ function ProgressUpload(progress_id) {
 }
 
 ProgressUpload.prototype = {
-    
     setProgress: function(percent) {
         console.log( percent + '%')
         $(this.progress).css('width', percent + '%');
