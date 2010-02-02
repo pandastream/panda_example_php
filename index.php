@@ -7,16 +7,20 @@ include('lib/head.inc.html');
 <form action="/player.php" method="get" id="upload-form">
     <label>Upload a video<br/></label>
 
-    <span id="the-button"></span>
-    <input type="text" id="txtFileName" disabled="true" style="border: solid 1px; background-color: #FFFFFF;" />
-    <div id="progress_bar_container" class="progress_bar_container">
-    </div>
-    
-    <script type="text/javascript">
-$('#the-button').pandaUploader(<?php echo json_encode(@$panda->signed_params("POST", "/videos.json", array())); ?>);
+    <span id="upload_button"></span>
+    <input type="text" id="upload_filename" disabled="true" />
+    <div id="upload_progress" class="progress_bar_container"></div>
+    <input type="hidden" id="returned_video_id" name="panda_video_id" />
 
-    </script>
-		<p><input type="submit" value="Save" id="btnSubmit" /></p>
+<script type="text/javascript">
+$('#returned_video_id').pandaUploader(<?php echo json_encode(@$panda->signed_params("POST", "/videos.json", array())); ?>, {
+    upload_button_id: 'upload_button',
+    upload_filename_id: 'upload_filename',
+    upload_progress_id: 'upload_progress'
+});
+</script>
+        
+		<p><input type="submit" value="Save" /></p>
 		
 </form>
 <?php include('lib/foot.inc.html'); ?>

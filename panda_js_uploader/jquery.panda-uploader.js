@@ -7,23 +7,25 @@ jQuery.fn.pandaUploader = function(signed_params, options, swfupload_options) {
         return false;
     }
     options = options === undefined ? {} : options;
+    swfupload_options = swfupload_options === undefined ? {} : swfupload_options;
+    
+    if (options.upload_button_id === undefined) {
+        alert("You have to specify the button id");
+        return false;
+    }
+    
     options = jQuery.extend({
-        video_field_id: "panda-video-id",
-        video_field_name: "panda_video_id",
+        upload_filename_id: null,
+        upload_progress_id: null,
         api_url: "http://staging.pandastream.com/v2/videos.json",
-        progress_id: 'progress_bar_container',
         progress_handler: null
     }, options);
+    
     if ( ! options.progress_handler) {
         options.progress_handler = new ProgressUpload(options);
     }
     
-    var uploader = null;
-
-    var placeholder = this[0];
-    var progress = null;
-    jQuery(placeholder).after('<input type="hidden" name="' + options.video_field_name +'" id="'+ options.video_field_id +'" />');
-    uploader = this.swfupload(jQuery.extend({
+    var uploader = this.swfupload(jQuery.extend({
         upload_url: options.api_url,
         file_size_limit : 0,
         file_types : "*.*",
@@ -33,13 +35,13 @@ jQuery.fn.pandaUploader = function(signed_params, options, swfupload_options) {
         button_image_url : '/panda_js_uploader/swfupload-jquery/swfupload/XPButtonUploadText_61x22.png',
         button_width : 61,
         button_height : 22,
-        button_placeholder : placeholder,
+        button_placeholder_id : options.upload_button_id,
         post_params : signed_params,
         file_post_name: "file",
         debug: true
     }, swfupload_options));
     
-    var $video_field = jQuery('#' + options.video_field_id);
+    var $video_field = this;
     uploader.bind('swfuploadLoaded', setupSubmitButton);
     uploader.bind('uploadStart', onStart);
     uploader.bind('uploadProgress', onProgress);
@@ -89,7 +91,7 @@ function ProgressUpload(options) {
 
 ProgressUpload.prototype = {
     start: function(file) {
-        var $p = jQuery('#' + this.options.progress_id);
+        var $p = jQuery('#' + this.options.upload_progress_id);
         if ($p.size() == 0) {
             return;
         }
