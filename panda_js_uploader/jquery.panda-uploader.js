@@ -43,6 +43,7 @@ jQuery.fn.pandaUploader = function(signed_params, options, swfupload_options) {
     
     var $video_field = this;
     uploader.bind('swfuploadLoaded', setupSubmitButton);
+    uploader.bind('fileQueued', onFileQueued);
     uploader.bind('uploadStart', onStart);
     uploader.bind('uploadProgress', onProgress);
     uploader.bind('uploadSuccess', onSuccess);
@@ -51,6 +52,14 @@ jQuery.fn.pandaUploader = function(signed_params, options, swfupload_options) {
     function setupSubmitButton() {
         var form = $video_field.closest("form");
         form.submit(onSubmit);
+    }
+
+    function onFileQueued(event, file) {
+        var $field = $('#' + options.upload_filename_id);
+        if ($field.size() == 0) {
+            return;
+        }
+        $field.val(file.name);
     }
 
     function onSubmit(event) {
