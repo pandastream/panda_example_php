@@ -3,7 +3,7 @@ include('lib/panda.php');
 include('lib/config.inc.php');
 include('lib/head.inc.html');
 
-$video_id = $_GET['video_id'];
+$video_id = $_GET['panda_video_id'];
 $panda_encodings = json_decode(@$panda->get("/videos/{$video_id}/encodings.json"));
 $panda_encoding = $panda_encodings[0];
 $encoding = false;
@@ -30,7 +30,7 @@ if ($panda_encoding->status == 'success') {
       var params = {wmode:"transparent",allowfullscreen:"true"};
       var attributes = {};
       attributes.align = "top";
-      swfobject.embedSWF("/flash/player.swf", "flash_container_<?php echo $encoding->id ?>", "<?php echo $encoding->width ?>", "<?php echo $encoding->height ?>", "9.0.115", "/flash/expressInstall.swf", flashvars, params, attributes);
+      swfobject.embedSWF("/player.swf", "flash_container_<?php echo $encoding->id ?>", "<?php echo $encoding->width ?>", "<?php echo $encoding->height ?>", "9.0.115", "/flash/expressInstall.swf", flashvars, params, attributes);
     </script>
     <p><a href="index.php">Try with a different video</a></p>
 <?php else : ?>

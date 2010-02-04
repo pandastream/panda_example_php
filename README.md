@@ -13,7 +13,7 @@ This application requires **PHP 5.2** or later. It's been tested successfully wi
 
 The most important step is setting up the video player. The one that this application uses is [JW Player](http://www.longtailvideo.com/players/jw-flv-player/) by Longtail. However, it has a restrictive license that forces us not to distribute it along with the rest of the package.
 
-Instead, you need to go to their website at http://www.longtailvideo.com, download the player, and copy the **player.swf** file into the public/flash/ directory of the application. 
+Instead, you need to go to their website at http://www.longtailvideo.com, download the player, and copy the **player.swf** file into the application directory.
 
 Additionally make sure of the following:
 
