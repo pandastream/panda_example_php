@@ -30,7 +30,7 @@ if ($panda_encoding->status == 'success') {
       var params = {wmode:"transparent",allowfullscreen:"true"};
       var attributes = {};
       attributes.align = "top";
-      swfobject.embedSWF("/flash/player.swf", "flash_container_<?php echo $encoding->id ?>", "<?php echo $encoding->width ?>", "<?php echo $encoding->height ?>", "9.0.115", "/flash/expressInstall.swf", flashvars, params, attributes);
+      swfobject.embedSWF("/player.swf", "flash_container_<?php echo $encoding->id ?>", "<?php echo $encoding->width ?>", "<?php echo $encoding->height ?>", "9.0.115", "/flash/expressInstall.swf", flashvars, params, attributes);
     </script>
     <p><a href="index.php">Try with a different video</a></p>
 <?php else : ?>
