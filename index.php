@@ -16,7 +16,8 @@ include('lib/head.inc.html');
 $('#returned_video_id').pandaUploader(<?php echo json_encode(@$panda->signed_params("POST", "/videos.json", array())); ?>, {
     upload_button_id: 'upload_button',
     upload_filename_id: 'upload_filename',
-    upload_progress_id: 'upload_progress'
+    upload_progress_id: 'upload_progress',
+    api_url: '<?php echo $panda->api_url() ?>'
 });
 </script>
     <p><input type="submit" value="Save" /></p>	
