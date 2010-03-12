@@ -15,4 +15,10 @@ $panda = new Panda(array(
 //
 $s3_bucket_name = 'your-s3-bucket';
 
+//
+// You may want to change this to your own timezone,
+// but this default should be safe
+//
+date_default_timezone_set('UTC');
+
 ?>
