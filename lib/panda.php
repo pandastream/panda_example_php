@@ -80,15 +80,15 @@ class Panda {
     // Authentication
     //
 
-    public function signed_query($verb, $request_path, $params) {
-        return self::array2query($this->signed_params($verb, $request_path, $params));
+    public function signed_query($verb, $request_path, $params = array(), $timestamp = null) {
+        return self::array2query($this->signed_params($verb, $request_path, $params, $timestamp));
     }
     
-    public function signed_params($verb, $request_path, $params) {
+    public function signed_params($verb, $request_path, $params = array(), $timestamp = null) {
         $auth_params = $params;
         $auth_params['cloud_id'] = $this->cloud_id;
         $auth_params['access_key'] = $this->access_key;
-        $auth_params['timestamp'] = date('c');
+        $auth_params['timestamp'] = $timestamp ? $timestamp : date('c');
         $auth_params['signature'] = $this->generate_signature($verb, $request_path, array_merge($params, $auth_params));
         return $auth_params;
     }
@@ -128,15 +128,15 @@ END;
 
     private static function urlencode($str) {
         $ret = urlencode($str);
-        $ret = str_replace($ret, "%7E", "~");
-        $ret = str_replace($ret, "+", "%20");
+        $ret = str_replace("%7E", "~", $ret);
+        $ret = str_replace("+", "%20", $ret);
         return $ret;
     }
     
     private static function array2query($array) {
         $pairs = array();
         foreach ($array as $key => $value) {
-            $pairs[] = urlencode($key) . '=' . urlencode($value);
+            $pairs[] = self::urlencode($key) . '=' . self::urlencode($value);
         }
         return join('&', $pairs);
     }
