@@ -11,9 +11,7 @@ Setup
 
 This application requires **PHP 5.2** or later. It's been tested successfully with **Apache 2**. Make sure of the following:
 
-The most important step is setting up the video player. The one that this application uses is [JW Player](http://www.longtailvideo.com/players/jw-flv-player/) by Longtail. However, it has a restrictive license that forces us not to distribute it along with the rest of the package.
-
-Instead, you need to go to their website at http://www.longtailvideo.com, download the player, and copy the **player.swf** file into the application directory.
+By default, Panda will encode your videos using the H.264 codec, playable with the HTML5 &lt;VIDEO&gt; tag. This example will use this to play your videos.
 
 Additionally make sure of the following:
 
@@ -34,4 +32,4 @@ Finally, the video will appear embedded on the page, using a Flash player. If yo
 Notes
 -----
 
-Uploads are done using [SWFUpload](http://www.swfupload.org/).
+Uploads are done using [panda_uploader](http://github.com/newbamboo/panda_uploader).
