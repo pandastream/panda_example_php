@@ -21,14 +21,12 @@ foreach ($panda_encodings as $panda_encoding) {
 <?php if ($mp4) : ?>
     <h1>Your video, encoded with Panda</h1>
 
-    <?php if ($mp4) : ?>
-        <div style="float: left; margin-right: 2em;">
-            <h2>Using HTML5</h2>
-            <video id="movie" width="<?php echo $mp4->width ?>" height="<?php echo $mp4->height ?>" preload="none" poster="<?php echo $mp4->screenshot_url ?>" controls>
-              <source src="<?php echo $mp4->url ?>" type="video/mp4">
-            </video>
-        </div>
-    <?php endif ?>
+    <div style="float: left; margin-right: 2em;">
+        <h2>Using HTML5</h2>
+        <video id="movie" width="<?php echo $mp4->width ?>" height="<?php echo $mp4->height ?>" preload="none" poster="<?php echo $mp4->screenshot_url ?>" controls>
+          <source src="<?php echo $mp4->url ?>" type="video/mp4">
+        </video>
+    </div>
     <p style="clear: both; padding-top: 1em;"><a href="<?php echo BASE_URL ?>/index.php">Try with a different video</a></p>
 <?php else : ?>
     <p>Your video has not been encoded yet. Please wait a few moments and <a href="<?php echo $_SERVER['REQUEST_URI'] ?>">refresh this page</a>.</p>
