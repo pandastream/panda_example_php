@@ -9,11 +9,9 @@ Also available: the simple [PHP Panda client library](http://github.com/newbambo
 Setup
 -----
 
-This application requires **PHP 5.2** or later. It's been tested successfully with **Apache 2**. Make sure of the following:
-
 By default, Panda will encode your videos using the H.264 codec, playable with the HTML5 &lt;VIDEO&gt; tag. This example will use this to play your videos. Make sure you use a compatible browser to watch it.
 
-Additionally make sure of the following:
+This application requires **PHP 5.2** or later. It's been tested successfully with **Apache 2**. Make sure of the following:
 
 * These required PHP modules are installed: **php5-curl**, **php5-mcrypt**
 * Copy the provided **lib/config.inc.php.example** into a new file **lib/config.inc.php** and fill it out with the appropriate info
