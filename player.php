@@ -21,7 +21,7 @@ foreach ($panda_encodings as $panda_encoding) {
 <?php if ($mp4) : ?>
     <h1>Your video, encoded with Panda</h1>
 
-    <div style="float: left; margin-right: 2em;">
+    <div>
         <h2>Using HTML5</h2>
         <video id="movie" width="<?php echo $mp4->width ?>" height="<?php echo $mp4->height ?>" preload="none" poster="<?php echo $mp4->screenshot_url ?>" controls>
           <source src="<?php echo $mp4->url ?>" type="video/mp4">
