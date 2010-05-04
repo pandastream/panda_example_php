@@ -11,7 +11,7 @@ Setup
 
 This application requires **PHP 5.2** or later. It's been tested successfully with **Apache 2**. Make sure of the following:
 
-By default, Panda will encode your videos using the H.264 codec, playable with the HTML5 &lt;VIDEO&gt; tag. This example will use this to play your videos.
+By default, Panda will encode your videos using the H.264 codec, playable with the HTML5 &lt;VIDEO&gt; tag. This example will use this to play your videos. Make sure you use a compatible browser to watch it.
 
 Additionally make sure of the following:
 
@@ -26,7 +26,7 @@ What does it do anyway?
 
 The application will initially show a simple form where you can specify a video file to upload from your computer. Once uploaded, it will ask you to wait a bit until all is encoded. You'll have to reload the page yourself until this is done.
 
-Finally, the video will appear embedded on the page, using a Flash player. If you wish to try again with another video, a link is provided to restart the process.
+Finally, the video will appear embedded on the page. If you wish to try again with another video, a link is provided to restart the process.
 
 
 Notes
