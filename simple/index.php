@@ -1,7 +1,7 @@
 <?php
 include('lib/panda.php');
 include('lib/config.inc.php');
-include('lib/head.inc.html');
+include('lib/head.inc.php');
 ?>
 <p>This is an example <strong>Panda</strong> client application, written in <strong>PHP</strong>.</p>
 <form action="<?php echo BASE_URL ?>/player.php" method="get" id="upload-form">
@@ -23,4 +23,4 @@ $('#returned_video_id').pandaUploader(<?php echo json_encode(@$panda->signed_par
     uploader_dir: '<?php echo BASE_URL ?>/panda_uploader',
 });
 </script>
-<?php include('lib/foot.inc.html'); ?>
+<?php include('lib/foot.inc.php'); ?>

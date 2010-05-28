@@ -1,7 +1,7 @@
 <?php
 include('lib/panda.php');
 include('lib/config.inc.php');
-include('lib/head.inc.html');
+include('lib/head.inc.php');
 
 $video_id = $_GET['panda_video_id'];
 $panda_encodings = json_decode(@$panda->get("/videos/{$video_id}/encodings.json"));
@@ -33,4 +33,4 @@ foreach ($panda_encodings as $panda_encoding) {
 <?php endif ?>
 <h2>Encoding details</h2>
 <pre><?php print_r($panda_encodings) ?></pre>
-<?php include('lib/foot.inc.html'); ?>
+<?php include('lib/foot.inc.php'); ?>

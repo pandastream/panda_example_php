@@ -1,5 +1,7 @@
 <?php
 
+define('BASE_URL', dirname($_SERVER["SCRIPT_NAME"]));
+
 //
 // The details of your Panda account
 //
