@@ -7,7 +7,7 @@ class Panda {
             'access_key' => null,
             'secret_key' => null,
             'api_host' => 'api.pandastream.com',
-            'api_port' => 80
+            'api_port' => 80,
         );
         foreach ($known_options as $option => $default) {
             $this->$option = isset($args[$option]) ? $args[$option] : $default;
@@ -37,11 +37,19 @@ class Panda {
     }
 
     public function api_url() {
-        return 'http://' . $this->api_host_and_port();
+        return 'http://' . $this->api_host_and_port() . $this->api_base_path();
     }
     
     public function api_host_and_port() {
-        return $this->api_host . "/v{$this->api_version}";
+        $ret = $this->api_host;
+        if ($this->api_port != 80) {
+            $ret .= ":{$this->api_port}";
+        }
+        return $ret;
+    }
+    
+    public function api_base_path() {
+        return "/v{$this->api_version}";
     }
 
     private function http_request($verb, $path, $query = null, $data = null) {
@@ -58,7 +66,7 @@ class Panda {
             $suffix = '?' . $signed_query_string;
         }
 
-        $url = $this->api_host_and_port() . $path . $suffix;
+        $url = $this->api_url() . $path . $suffix;
         
         $curl = curl_init($url);
         if ($signed_data) {
@@ -66,7 +74,9 @@ class Panda {
         }
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $verb);
         curl_setopt($curl, CURLOPT_PORT, $this->api_port);
-        curl_setopt($curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP);
+        if (defined('CURLOPT_PROTOCOLS')) {
+            curl_setopt($curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP);
+        }
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         // curl_setopt($curl, CURLOPT_VERBOSE, 1);
 
