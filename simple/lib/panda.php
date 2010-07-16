@@ -104,16 +104,7 @@ class Panda {
     }
     
     public static function signature_generator($verb, $request_path, $host, $secret_key, $params = array()) {
-        $request_path = self::canonical_path($request_path);
-        $query_string = self::canonical_querystring($params);
-        $_verb = strtoupper($verb);
-        $_host = strtolower($host);
-        $string_to_sign =<<<END
-$_verb
-$_host
-$request_path
-$query_string
-END;
+        $string_to_sign = self::string_to_sign($verb, $request_path, $host, $params);
         $context = hash_init('sha256', HASH_HMAC, $secret_key);
         hash_update($context, $string_to_sign);
         return base64_encode(hash_final($context, true));
@@ -121,6 +112,15 @@ END;
     
     public function generate_signature($verb, $request_path, $params = array()) {
         return self::signature_generator($verb, $request_path, $this->api_host, $this->secret_key, $params);
+    }
+    
+    public function string_to_sign($verb, $request_path, $host, $params = array()) {
+        $request_path = self::canonical_path($request_path);
+        $query_string = self::canonical_querystring($params);
+        $_verb = strtoupper($verb);
+        $_host = strtolower($host);
+        $string_to_sign = "$_verb\n$_host\n$request_path\n$query_string";
+        return $string_to_sign;
     }
     
     //
