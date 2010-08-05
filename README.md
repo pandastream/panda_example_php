@@ -31,3 +31,4 @@ At the moment, the following examples are available:
 
 * `simplest`: no Javascript involved. The form posts the video directly to Panda, and the browser is then redirected back from Panda to the application. No progress bar is shown and the user doesn't receive much feedback.
 * `simple`: simple usage of the Javascript upload plugin. Video is uploaded to Panda directly using Flash and showing a progress bar, then the form is posted to your application.
+* `ajax`: advanced example. It uploads the videos as soon as they are selected, and displays the result on the same page.
