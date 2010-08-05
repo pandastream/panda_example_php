@@ -7,10 +7,13 @@ include('lib/head.inc.html');
 <form action="<?php echo BASE_URL ?>/player.php" method="get" id="upload-form">
     <label>Upload a video<br/></label>
     
-    <span id="upload_button"></span>
-    <input type="text" id="upload_filename" disabled="true" class="panda_upload_filename" />
+    <!-- field where the video ID will be stored after the upload -->
+    <input type="hidden" name="panda_video_id" id="returned_video_id" />
+
+    <!-- upload progress bar (optional) -->
     <div id="upload_progress" class="panda_upload_progress"></div>
-    <input type="hidden" id="returned_video_id" name="panda_video_id" />
+
+    <!-- here we'll show the preview (optional) -->
     <div id="preview"></div>
 </form>
 <script type="text/javascript">
@@ -19,13 +22,11 @@ var signed_params = <?php echo json_encode(@$panda->signed_params("POST", "/vide
 var pollTimeout;
 
 $('#returned_video_id').pandaUploader(get_signed_params, {
-    upload_button_id: 'upload_button',
-    upload_filename_id: 'upload_filename',
     upload_progress_id: 'upload_progress',
     api_url: '<?php echo $panda->api_url() ?>',
     uploader_dir: '<?php echo BASE_URL ?>/panda_uploader',
-    strategy: 'upload_on_select',
-    complete: resetPreview
+    upload_strategy: new PandaUploader.UploadOnSelect(),
+    onsuccess: resetPreview
 });
 
 function get_signed_params() {
