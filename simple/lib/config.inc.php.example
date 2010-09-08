@@ -6,7 +6,7 @@ define('BASE_URL', dirname($_SERVER["SCRIPT_NAME"]));
 // The details of your Panda account
 //
 $panda = new Panda(array(
-    'api_host' => 'api.pandastream.com', // This default will normally be fine
+    'api_host' => 'api.pandastream.com', // Use api.eu.pandastream.com if your account is in the EU
     'cloud_id' => 'your-panda-cloud-id',
     'access_key' => 'your-panda-access-key',
     'secret_key' => 'your-panda-secret-key',

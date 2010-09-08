@@ -3,6 +3,7 @@ Panda example application, PHP
 
 Some example PHP web apps that use [**Panda**](http://pandastream.com) to encode videos and play them on a page.
 
+The full tutorial is available here: <http://pandastream.com/docs/integrate_with_php>
 Also available:
 
 * The simple [PHP Panda client library](http://github.com/newbamboo/panda_client_php) that this application is based on.
