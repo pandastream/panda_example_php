@@ -7,7 +7,7 @@ class Panda {
             'access_key' => null,
             'secret_key' => null,
             'api_host' => 'api.pandastream.com', // Use api.eu.pandastream.com if your account is in the EU
-            'api_port' => 80,
+            'api_port' => 443,
         );
         foreach ($known_options as $option => $default) {
             $this->$option = isset($args[$option]) ? $args[$option] : $default;
@@ -36,8 +36,16 @@ class Panda {
         return $this->http_request('DELETE', $request_path, $params);
     }
 
+    public function api_protocol() {
+        if ($this->api_port == 443) {
+            return 'https';
+        }else{
+            return 'http';
+        }
+    }
+
     public function api_url() {
-        return 'http://' . $this->api_host_and_port() . $this->api_base_path();
+        return $this->api_protocol() . '://' . $this->api_host_and_port() . $this->api_base_path();
     }
     
     public function api_host_and_port() {
@@ -59,7 +67,10 @@ class Panda {
         $signed_data = null;
 
         if ($verb == 'POST' || $verb == 'PUT') {
-            $signed_data = $this->signed_query($verb, $path, $data);
+            $signed_data = $this->signed_params($verb, $path, $data);
+            if(isset($data["file"])) {
+                $signed_data["file"] = "@". $data["file"];
+            }
         }
         else {
             $signed_query_string = $this->signed_query($verb, $path, $query);
@@ -77,6 +88,7 @@ class Panda {
         if (defined('CURLOPT_PROTOCOLS')) {
             curl_setopt($curl, CURLOPT_PROTOCOLS, CURLPROTO_HTTP);
         }
+
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         // curl_setopt($curl, CURLOPT_VERBOSE, 1);
 
@@ -95,11 +107,14 @@ class Panda {
     }
     
     public function signed_params($verb, $request_path, $params = array(), $timestamp = null) {
+
         $auth_params = $params;
+        unset($auth_params["file"]);
+
         $auth_params['cloud_id'] = $this->cloud_id;
         $auth_params['access_key'] = $this->access_key;
         $auth_params['timestamp'] = $timestamp ? $timestamp : date('c');
-        $auth_params['signature'] = $this->generate_signature($verb, $request_path, array_merge($params, $auth_params));
+        $auth_params['signature'] = $this->generate_signature($verb, $request_path, $auth_params);
         return $auth_params;
     }
     
