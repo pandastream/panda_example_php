@@ -9,7 +9,7 @@
 <p>Available examples:</p>
 <ul>
     <li><a href="./simplest">Simplest</a>: HTML-only example</li>
-    <li><a href="./simple">Simple</a>: using our <a href="http://github.com/newbamboo/panda_uploader"><code>panda_uploader</code></a></li>
+    <li><a href="./simple">Simple</a>: using our <a href="http://github.com/pandastream/panda_uploader"><code>panda_uploader</code></a></li>
     <li><a href="./ajax">Ajax</a>: again using <code>panda_uploader</code></li>
 </ul>
 
