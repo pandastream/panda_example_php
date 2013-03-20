@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 	<title>Panda: example of PHP-based client app</title>
 
-	<script src="//d21qbsp9m249bi.cloudfront.net/u/2.0.0-pre5/panda-uploader.min.js" type="text/javascript"></script>
+	<script src="//cdn.pandastream.com/u/2.0/panda-uploader.min.js" type="text/javascript"></script>
 
   <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
   <link rel="stylesheet" type="text/css" href="/bootstrap.css">
