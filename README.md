@@ -21,7 +21,6 @@ These applications require **PHP 5.2** or later. They have been tested successfu
 
 Run the web server (php >= 5.4):
 
-$ cd ./simple
 $ php -S localhost:8080
 
 
