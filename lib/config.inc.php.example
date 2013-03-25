@@ -4,13 +4,14 @@ define('BASE_URL', dirname($_SERVER["SCRIPT_NAME"]));
 
 //
 // The details of your Panda account
+// Use api.eu.pandastream.com if your account is in the EU
 //
+
 $panda_config = array(
     'api_host' => 'api.pandastream.com', 
-    // Use api.eu.pandastream.com if your account is in the EU
-    'cloud_id' => 'XXX',
-    'access_key' => 'XXX',
-    'secret_key' => 'XXX',
+    'cloud_id' => 'your-cloud-id',,
+    'access_key' => 'your-access-key',
+    'secret_key' => 'your-secret-key',
 );
 
 $panda = new Panda($panda_config);
