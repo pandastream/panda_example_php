@@ -1,0 +1,20 @@
+<?php
+
+define('BASE_URL', dirname($_SERVER["SCRIPT_NAME"]));
+
+//
+// The details of your Panda account
+//
+$panda_config = array(
+    'api_host' => 'api.pandastream.com', 
+    // Use api.eu.pandastream.com if your account is in the EU
+    'cloud_id' => 'XXX',
+    'access_key' => 'XXX',
+    'secret_key' => 'XXX',
+);
+
+$panda = new Panda($panda_config);
+
+date_default_timezone_set('UTC');
+
+?>
