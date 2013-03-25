@@ -6,8 +6,9 @@ class Panda {
             'cloud_id' => null,
             'access_key' => null,
             'secret_key' => null,
-            'api_host' => 'api.pandastream.com', // Use api-eu.pandastream.com if your account is in the EU
             'api_port' => 443,
+            'api_host' => 'api.pandastream.com',
+            // Use api-eu.pandastream.com if your account is in the EU
         );
         foreach ($known_options as $option => $default) {
             $this->$option = isset($args[$option]) ? $args[$option] : $default;
