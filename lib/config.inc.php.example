@@ -2,7 +2,7 @@
 
 //
 // The details of your Panda account
-// Use api.eu.pandastream.com if your account is in the EU
+// Use api-eu.pandastream.com if your account is in the EU
 //
 
 $panda_config = array(
